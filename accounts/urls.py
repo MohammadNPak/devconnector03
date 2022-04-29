@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import my_view
+from .views import create_profile 
 urlpatterns = [
-    path('my_prefix',my_view ,name='my_name')
+    path('create-profile',create_profile ,name='create-profile')
 ]
