@@ -1,6 +1,5 @@
 from django.shortcuts import render
-
-# Create your views here.
+from django.http import HttpResponse
 
 
 def login_page(request):
@@ -11,3 +10,16 @@ def profiles(request):
 
 def profile(request):
     return render(request,'accounts/profile.html',{})
+
+
+def register(request):
+    condext = {}
+    return render(request,'accounts/register.html',condext)
+
+def dashboard(request):
+    return render(request,'accounts/dashboard.html',{})
+
+  
+def create_profile(request):
+    return render(request,'accounts/create-profile.html',{})
+
