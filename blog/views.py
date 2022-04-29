@@ -8,4 +8,4 @@ def my_view(request):
 
 def index(request):
     context = {}
-    return render(request,'blog\index',context)
+    return render(request,'blog\index.html',context)

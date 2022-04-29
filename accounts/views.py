@@ -5,3 +5,7 @@ from django.shortcuts import render
 
 def my_view(request):
     return render(request,'',{})
+
+def register(request):
+    condext = {}
+    return render(request,'account\register.html',condext)
