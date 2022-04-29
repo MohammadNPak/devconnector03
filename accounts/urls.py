@@ -1,5 +1,8 @@
 from django.urls import path
-from .views import my_view
+from .views import login_page, profiles , profile
+
 urlpatterns = [
-    path('my_prefix',my_view ,name='my_name')
+    path('login',login_page ,name='login url'),
+    path('profiles',profiles ,name='profiles'),
+    path('profile',profile ,name='profile'),
 ]
