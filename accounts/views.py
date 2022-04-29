@@ -6,3 +6,8 @@ from django.http import HttpResponse
 
 def dashboard(request):
     return render(request,'accounts/dashboard.html',{})
+
+  
+def create_profile(request):
+    return render(request,'accounts/create-profile.html',{})
+
