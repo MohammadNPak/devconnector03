@@ -1,8 +1,8 @@
 
 from django.urls import path
+
 from .views (import login_page, profiles ,
              profile,create_profile,dashboard,register)
-
 
 urlpatterns = [
   path('dashboard',dashboard,name='dashboard'),
