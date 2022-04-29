@@ -23,6 +23,7 @@ from accounts import urls as accounts_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('', index),
     path('accounts/', include(accounts_urls)),
     path('blog/', include(blog_urls)),

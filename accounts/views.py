@@ -1,8 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-# Create your views here.
 
+def login_page(request):
+    return render(request,'accounts/login.html',{})
+
+def profiles(request):
+    return render(request,'accounts/profiles.html',{})
+
+def profile(request):
+    return render(request,'accounts/profile.html',{})
 
 
 def register(request):
@@ -15,3 +22,4 @@ def dashboard(request):
   
 def create_profile(request):
     return render(request,'accounts/create-profile.html',{})
+
