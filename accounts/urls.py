@@ -1,6 +1,6 @@
+from sqlite3 import register_adapter
 from django.urls import path
-from .views import my_view,register
+from .views import register
 urlpatterns = [
-    path('my_prefix',my_view ,name='my_name'),
-    path('register',register,name='register')
+    path('register',register)
 ]

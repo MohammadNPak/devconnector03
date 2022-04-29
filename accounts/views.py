@@ -8,4 +8,4 @@ def my_view(request):
 
 def register(request):
     condext = {}
-    return render(request,'account\register.html',condext)
+    return render(request,'accounts/register.html',condext)
