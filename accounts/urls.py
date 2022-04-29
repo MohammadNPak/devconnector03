@@ -1,5 +1,10 @@
 from django.urls import path
-from .views import create_profile 
+from .views import create_profile,dashboard
+
+
+
 urlpatterns = [
-    path('create-profile',create_profile ,name='create-profile')
+  path('dashboard',dashboard,name='dashboard'),
+  path('create-profile',create_profile ,name='create_profile'),
+
 ]
