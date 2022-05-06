@@ -51,15 +51,16 @@
               src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
               alt=""
             />
-            <h4>John Doe</h4>
+            <h4> {{username}} </h4>
+            {% if username %}
+            <h1>{{username}}</h1>
+            {% endif %}
           </a>
         </div>
         <div>
+          <h4>{{post.title}}</h4>
           <p class="my-1">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-            possimus corporis sunt necessitatibus! Minus nesciunt soluta
-            suscipit nobis. Amet accusamus distinctio cupiditate blanditiis
-            dolor? Illo perferendis eveniet cum cupiditate aliquam?
+            {{post.body}}
           </p>
         </div>
       </div>
@@ -79,6 +80,8 @@
         </form>
       </div>
 
+
+      {% for comment in comments %}
       <div class="posts">
         <div class="post bg-white p-1 my-1">
           <div>
@@ -93,34 +96,13 @@
           </div>
           <div>
             <p class="my-1">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-              possimus corporis sunt necessitatibus! Minus nesciunt soluta
-              suscipit nobis. Amet accusamus distinctio cupiditate blanditiis
-              dolor? Illo perferendis eveniet cum cupiditate aliquam?
+              {{comment.body}}
             </p>
           </div>
         </div>
+        {% endfor %}
 
-        <div class="post bg-white p-1 my-1">
-          <div>
-            <a href="profile.html">
-              <img
-                class="round-img"
-                src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
-                alt=""
-              />
-              <h4>John Doe</h4>
-            </a>
-          </div>
-          <div>
-            <p class="my-1">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-              possimus corporis sunt necessitatibus! Minus nesciunt soluta
-              suscipit nobis. Amet accusamus distinctio cupiditate blanditiis
-              dolor? Illo perferendis eveniet cum cupiditate aliquam?
-            </p>
-          </div>
-        </div>
+        
       </div>
     </section>
   </body>
