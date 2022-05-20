@@ -18,3 +18,8 @@ class Comment(models.Model):
 
     def __str__(self) -> str:
         return f"{self.post.title}|{self.body[:40]}"
+
+class SamplePost(models.Model):
+    title = models.CharField(max_length=100)
+    body = models.TextField()
+    
