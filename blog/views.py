@@ -14,18 +14,29 @@ def post(request, id):
     # except ObjectDoesNotExist:
     #     raise Http404("Poll does not exist")
     p = get_object_or_404(Post, id=id)
-
-    c = Comment.objects.filter(post=p)
+    if request.method == "POST":
+        comment_body = request.POST.get("comment_body")
+        if comment_body:
+            c = Comment(body=comment_body,post=p)
+            c.save()
+    c = Comment.objects.filter(post=p).order_by('-date')
     return render(request, 'blog/post.html',
-                  {'post': p, 'username': 'mohammadnpak', 'comments': c})
-
+                    {'post': p, 'username': 'mohammadnpak', 'comments': c})
 
 def index(request):
     return render(request, 'blog/index.html', {})
 
 
 def posts(request):
-    return render(request, 'blog/posts.html', {})
+    if request.method=="POST":
+        title=request.POST.get("title")
+        body=request.POST.get("body")
+        if title and body:
+            p = Post(title=title,body=body)
+            p.save()
+    posts = Post.objects.all().order_by('-date')[:20]
+
+    return render(request, 'blog/posts.html', {"posts":posts})
 
 
 def sample_post(request):

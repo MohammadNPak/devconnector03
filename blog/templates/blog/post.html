@@ -69,9 +69,10 @@
         <div class="post-form-header bg-primary">
           <h3>Leave A Comment</h3>
         </div>
-        <form class="form my-1">
+        <form class="form my-1" method="post">
+          {% csrf_token %}
           <textarea
-            name="text"
+            name="comment_body"
             cols="30"
             rows="5"
             placeholder="Comment on this post"
