@@ -23,3 +23,8 @@ def dashboard(request):
 def create_profile(request):
     return render(request,'accounts/create-profile.html',{})
 
+def add_education(request):
+    return render(request,'accounts/add-education.html',{})
+
+
+

@@ -69,14 +69,15 @@
         <div class="post-form-header bg-primary">
           <h3>Leave A Comment</h3>
         </div>
-        <form class="form my-1" method="post">
+        <form class="form my-1 comment-form" method="post" >
           {% csrf_token %}
-          <textarea
+          {% comment %} <textarea
             name="comment_body"
             cols="30"
             rows="5"
             placeholder="Comment on this post"
-          ></textarea>
+          ></textarea> {% endcomment %}
+          {{form}}
           <input type="submit" class="btn btn-dark my-1" value="Submit" />
         </form>
       </div>

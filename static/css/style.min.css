@@ -547,3 +547,12 @@ img {
     padding: 0.3rem 0.4rem;
   }
 }
+
+
+/* .comment-body{
+  background-color: #17a2b8;
+} */
+
+.comment-form textarea{
+  background-color: #343a40;
+}

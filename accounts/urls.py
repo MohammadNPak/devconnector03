@@ -2,7 +2,7 @@
 from django.urls import path
 
 from .views import (login_page, profiles ,
-             profile,create_profile,dashboard,register)
+             profile,create_profile,dashboard,register,add_education)
 
 urlpatterns = [
   path('dashboard',dashboard,name='dashboard'),
@@ -11,5 +11,6 @@ urlpatterns = [
   path('login',login_page ,name='login'),
   path('profiles',profiles ,name='profiles'),
   path('profile',profile ,name='profile'),
+  path('addeducation',add_education ,name='profile'),
 
 ]
