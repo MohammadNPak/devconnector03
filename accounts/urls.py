@@ -1,16 +1,16 @@
 
 from django.urls import path
 
-from .views import (login_page, profiles ,
-             profile,create_profile,dashboard,register,add_education)
+from . import views 
 
 urlpatterns = [
-  path('dashboard',dashboard,name='dashboard'),
-  path('create-profile',create_profile ,name='create_profile'),
-  path('register',register,name="register"),
-  path('login',login_page ,name='login'),
-  path('profiles',profiles ,name='profiles'),
-  path('profile',profile ,name='profile'),
-  path('addeducation',add_education ,name='profile'),
+  path('dashboard',views.dashboard,name='dashboard'),
+  path('create-profile',views.create_profile ,name='create_profile'),
+  path('register',views.register,name="register"),
+  path('login',views.login_page ,name='login'),
+  path('profiles',views.profiles ,name='profiles'),
+  path('profile',views.profile ,name='profile'),
+  path('addeducation',views.add_education ,name='education'),
+  path('addexperience',views.add_experience ,name='experience'),
 
 ]

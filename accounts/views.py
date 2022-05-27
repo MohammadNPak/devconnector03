@@ -26,5 +26,8 @@ def create_profile(request):
 def add_education(request):
     return render(request,'accounts/add-education.html',{})
 
+def add_experience(request):
+    return render(request,'accounts/add-experience.html',{})
+    
 
 
