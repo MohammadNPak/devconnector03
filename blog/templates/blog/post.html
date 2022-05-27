@@ -48,13 +48,13 @@
           <a href="profile.html">
             <img
               class="round-img"
-              src="{{u.picture.url}}"
+              src={{post.author.picture.url}}
               alt=""
             />
-            <h4> {{u.get_full_name}} </h4>
-            {% if u %}
-            <h1>{{u.username}}</h1>
-            {% endif %}
+            <h4> {{post.author.get_full_name}} </h4>
+           
+            <h1>{{post.author.username}}</h1>
+           
           </a>
         </div>
         <div>
@@ -90,10 +90,10 @@
             <a href="profile.html">
               <img
                 class="round-img"
-                src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
+                src="{{comment.author.picture.url}}"
                 alt=""
               />
-              <h4>John Doe</h4>
+              <h4>{{comment.author.username}}</h4>
             </a>
           </div>
           <div>

@@ -392,6 +392,7 @@ img {
 }
 .profile-grid .profile-top img {
   width: 250px;
+  height: 250px;
 }
 .profile-grid .profile-top .icons a {
   color: #fff;
@@ -486,6 +487,7 @@ img {
 }
 .post img {
   width: 150px;
+  height: 150px;
 }
 @media (max-width: 700px) {
   .hide-sm {
