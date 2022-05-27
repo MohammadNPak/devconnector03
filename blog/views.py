@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth import get_user_model
 from .models import Post, Comment, SamplePost
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
@@ -7,8 +8,9 @@ from .forms import PostForm, CommentForm
 # Create your views here.
 
 
-def post(request, id):
 
+def post(request, id):
+    u = get_user_model().objects.first()
     p = get_object_or_404(Post, id=id)
     if request.method == "POST":
         comment = CommentForm(request.POST)
@@ -21,7 +23,7 @@ def post(request, id):
     form = CommentForm()
     return render(request, 'blog/post.html',
                   {'post': p,
-                   'username': 'mohammadnpak',
+                   'u':u ,
                    'comments': c,
                    'form': form
                    })

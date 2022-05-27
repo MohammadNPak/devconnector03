@@ -48,12 +48,12 @@
           <a href="profile.html">
             <img
               class="round-img"
-              src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
+              src="{{u.picture.url}}"
               alt=""
             />
-            <h4> {{username}} </h4>
-            {% if username %}
-            <h1>{{username}}</h1>
+            <h4> {{u.get_full_name}} </h4>
+            {% if u %}
+            <h1>{{u.username}}</h1>
             {% endif %}
           </a>
         </div>

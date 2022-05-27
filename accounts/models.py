@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from turtle import title
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -6,11 +7,11 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    bio = models.TextField()
-    github_username = models.CharField(max_length=200)
-    role = models.CharField(max_length=200)
-    location = models.CharField(max_length=200)
-    
+    picture = models.ImageField(upload_to='profile_picture',null=True,blank=True)
+    bio = models.TextField(null=True,blank=True)
+    github_username = models.CharField(max_length=200,null=True,blank=True)
+    role = models.CharField(max_length=200,null=True,blank=True)
+    location = models.CharField(max_length=200,null=True,blank=True)
     
 
 class SocialMedia(models.Model):
