@@ -3,7 +3,7 @@ from turtle import title
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
-
+from .managers import CustomUserManager
 
 
 class User(AbstractUser):
@@ -12,7 +12,7 @@ class User(AbstractUser):
     github_username = models.CharField(max_length=200,null=True,blank=True)
     role = models.CharField(max_length=200,null=True,blank=True)
     location = models.CharField(max_length=200,null=True,blank=True)
-    
+    objects = CustomUserManager()
 
 class SocialMedia(models.Model):
     TYPES = (

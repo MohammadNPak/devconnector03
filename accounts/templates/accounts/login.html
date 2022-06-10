@@ -32,25 +32,30 @@
     </nav>
     <section class="container">
       <!-- Alert -->
+      {% if messages %}
+      {% for message in messages %}
       <div class="alert alert-danger">
-        Invalid Credentials
-      </div>
+        {{message}}
+      </div> 
+      {% endfor %}
+      {% endif %}
 
       <h1 class="large text-primary">
         Sign In
       </h1>
       <p class="lead"><i class="fas fa-user"></i> Sign into your account</p>
-      <form action="dashboard.html" class="form">
+      <form action="{% url 'login' %}" class="form" method="post">
+        {% csrf_token %}
         <div class="form-group">
-          <input type="email" placeholder="Email Address" />
+          <input name="username" type="text" placeholder="Username" />
         </div>
         <div class="form-group">
-          <input type="password" placeholder="Password" minlength="6" />
+          <input name="password" type="password" placeholder="Password" />
         </div>
         <input type="submit" value="Login" class="btn btn-primary" />
       </form>
       <p class="my-1">
-        Don't have an account? <a href="register.html">Sign Up</a>
+        Don't have an account? <a href="{% url 'register' %}" >Sign Up</a>
       </p>
     </section>
   </body>
