@@ -13,7 +13,7 @@ class User(AbstractUser):
     role = models.CharField(max_length=200,null=True,blank=True)
     location = models.CharField(max_length=200,null=True,blank=True)
     objects = CustomUserManager()
-
+    
 class SocialMedia(models.Model):
     TYPES = (
         ('w', 'web'),

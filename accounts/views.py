@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
+from django.urls import reverse
 from django.contrib import messages
+
+from accounts.models import User
+
 def login_page(request):
     if request.method == "POST":
         username=request.POST.get("username")
@@ -9,18 +13,23 @@ def login_page(request):
         user = authenticate(username=username,password=password)
         # print(dir(request))
         if user:
-            login(user)
-            
+            login(request,user)
+            return redirect(to=reverse('dashboard'))
         else:
             messages.add_message(request,messages.ERROR,"username or password is wrong!")
         # print(username,password)
     return render(request,'accounts/login.html',{})
 
+def logout_page(request):
+    logout(request)
+    return redirect(to=reverse('index'))
+
 def profiles(request):
     return render(request,'accounts/profiles.html',{})
 
-def profile(request):
-    return render(request,'accounts/profile.html',{})
+def profile(request,id):
+    user=User.objects.get(id=id)
+    return render(request,'accounts/profile.html',{"user":user})
 
 
 def register(request):

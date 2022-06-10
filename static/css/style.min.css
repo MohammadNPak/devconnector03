@@ -489,6 +489,14 @@ img {
   width: 150px;
   height: 150px;
 }
+
+.navbar-profile{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  position: relative;
+  top: -5px;
+}
 @media (max-width: 700px) {
   .hide-sm {
     display: none;
