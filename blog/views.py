@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from .models import Post, Comment, SamplePost
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
+from .models import Post,Comment
 from .forms import PostForm, CommentForm
 
 # Create your views here.
@@ -47,18 +48,3 @@ def posts(request):
                   {"posts": posts,
                    "form": form})
 
-
-def sample_post(request):
-    if request.method == "GET":
-        return render(request,
-                      'blog/sample_post.html',
-                      {"type": request.method})
-    elif request.method == "POST":
-        title = request.POST["title"]
-        body = request.POST["body"]
-        sp = SamplePost(title=title, body=body)
-        sp.save()
-
-        return render(request,
-                      'blog/sample_post.html',
-                      {"message": "your data has been saved!"})

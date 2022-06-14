@@ -10,7 +10,9 @@ class Post(models.Model):
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(user,on_delete=models.CASCADE)
-
+    likes = models.ManyToManyField(user, related_name="post_likes", blank=True)
+    dislikes = models.ManyToManyField(user, related_name="post_dislikes", blank=True)
+    
     def __str__(self) -> str:
         return f"{self.title}|{self.body[:20]}"
     
@@ -29,6 +31,4 @@ class Comment(models.Model):
     def __str__(self) -> str:
         return f"{self.post.title}|{self.body[:40]}"
 
-class SamplePost(models.Model):
-    title = models.CharField(max_length=100)
-    body = models.TextField()
+

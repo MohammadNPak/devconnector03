@@ -233,6 +233,11 @@
   margin-top: 0.3rem;
   color: #888;
 }
+.form-error {
+  display: block;
+  margin-top: 0.3rem;
+  color: rgb(219, 80, 16);
+}
 .form input[type="text"],
 .form input[type="email"],
 .form input[type="password"],

@@ -1,41 +1,49 @@
+<nav class="navbar bg-dark">
+  <h1>
+    <a href="{% url 'index' %}"><i class="fas fa-code"></i> DevConnector</a>
+  </h1>
+  <ul>
+    <li>
+      <a href="{% url 'profiles' %}">Developers</a>
+    </li>
+    <li>
+      <a href="{% url 'posts' %}">Posts</a>
+    </li>
+    <li>
+      <a href="{% url 'dashboard' %}" title="Dashboard">
+        <i class="fas fa-user"></i>
+        <span class="hide-sm">Dashboard</span>
+      </a>
+    </li>
+    {% if request.user.is_authenticated %}
+    <li>
+      <img class="navbar-profile" src={{ request.user.picture.url }} alt="" srcset="">
+    </li>
+    <ul>
 
-    <nav class="navbar bg-dark">
-        <h1>
-          <a href="index.html"><i class="fas fa-code"></i> DevConnector</a>
-        </h1>
-        <ul>
-          <li><a href="profiles.html">Developers</a></li>
-          <li><a href="posts.html">Posts</a></li>
-          <li>
-            <a href="dashboard.html" title="Dashboard"
-              ><i class="fas fa-user"></i>
-              <span class="hide-sm">Dashboard</span></a
-            >
-          </li>
-          {% if request.user.is_authenticated %}
-          <li>
-            <a href="{% url 'profile'  id=request.user.id %}" title="Logout">
-              <span class="hide-sm">{{request.user.username}}</span></a
-            >
-          </li>
-          <li>
-            <img class="navbar-profile" src={{request.user.picture.url}} alt="" srcset="">
+      <li>
+        <a href="{% url 'profile' username=request.user.username %}" title="profile">
+          <span class="hide-sm">{{ request.user.username }}</span>
+        </a>
+      </li>
+      <li>
+        <img class="navbar-profile" src={{ request.user.picture.url }} alt="" srcset="">
+      </li>
+      <li>
+        <a href="{% url 'logout' %}" title="Logout">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="hide-sm">Logout</span>
+        </a>
+      </li>
+    </ul>
 
-          </li>
-          <li>
-            <a href="{% url 'logout' %}" title="Logout">
-              <i class="fas fa-sign-out-alt"></i>
-              <span class="hide-sm">Logout</span></a
-            >
-          </li>
-          {% else %}
-          <li>
-            <a href="{% url 'login' %}" title="Login">
-              <i class="fas fa-sign-out-alt"></i>
-              <span class="hide-sm">Login</span></a
-            >
-          </li>
-
-          {% endif %}
-        </ul>
-      </nav>
+    {% else %}
+      <li>
+        <a href="{% url 'login' %}" title="Login">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="hide-sm">Login</span>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>

@@ -1,10 +1,11 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
 from django.contrib import messages
 
 from accounts.models import User
+from .forms import UserForm
 
 def login_page(request):
     if request.method == "POST":
@@ -27,14 +28,26 @@ def logout_page(request):
 def profiles(request):
     return render(request,'accounts/profiles.html',{})
 
-def profile(request,id):
-    user=User.objects.get(id=id)
+def profile(request,username):
+    user=get_object_or_404(User,username=username)
     return render(request,'accounts/profile.html',{"user":user})
 
 
 def register(request):
-    condext = {}
-    return render(request,'accounts/register.html',condext)
+    if request.method == "POST":
+        form=UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request,messages.SUCCESS,"Your account has been created successfully! you can now login")
+            return redirect(to=reverse('login'))
+        else:
+            return render(request,'accounts/register.html',{'form':form})
+
+    elif request.method == "GET":
+        form = UserForm()
+        return render(request,'accounts/register.html',{'form':form})
+    else:
+        return HttpResponse("404")
 
 def dashboard(request):
     return render(request,'accounts/dashboard.html',{})
