@@ -35,7 +35,7 @@ def index(request):
     return render(request, 'blog/index.html', {})
 
 
-@login_required(login_url='/accounts/login/')
+@login_required
 def posts(request):
     if request.method == "POST":
         form = PostForm(request.POST)

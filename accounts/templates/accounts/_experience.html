@@ -1,0 +1,15 @@
+<div class="profile-exp bg-white p-2">
+    <h2 class="text-primary">Experiences</h2>
+    {% for exp in user.experience_set.all %}
+        <div>
+            <h3>{{ exp.title }}</h3>
+            <p>{{ exp.from_date }} - {{ exp.to_date }}</p>
+            <p>
+                <strong>Position:</strong> {{ exp.current_job }}
+            </p>
+            <p>
+                <strong>Description:</strong>{{ exp.decription }}
+            </p>
+        </div>
+    {% endfor %}
+</div>

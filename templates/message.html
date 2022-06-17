@@ -1,0 +1,11 @@
+{% extends 'landing.html' %}
+{% load static %}
+{% block landing_inner %}
+    <h1 class="x-large">Developer Connector</h1>
+    {% for message in messages %}<p class="lead">{{ message }}</p>{% endfor %}
+    <div class="buttons">
+        <a href="{% url 'register' %}" class="btn btn-primary">Sign Up</a>
+        <a href="{% url 'login' %}" class="btn btn">Login</a>
+        <a href="{{ back_link }}" class="btn btn">Back</a>
+    </div>
+{% endblock landing_inner %}

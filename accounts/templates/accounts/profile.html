@@ -1,170 +1,165 @@
 {% extends 'base.html' %}
-{%load static%}
+{% load static %}
 {% block content %}
-{% include 'navbar.html' %}
-    <section class="container">
-      <a href="{% url 'profiles' %}" class="btn">Back To Profiles</a>
-      <div class="profile-grid my-1">
-        <!-- Top -->
-        <div class="profile-top bg-primary p-2">
-          <img
-            class="round-img my-1"
-            src="{{user.picture.url}}"
-            alt="{{user.username}}"
-          />
-
-          <h1 class="large">{{user.get_full_name}}</h1>
-          <p class="lead">{{user.role}}</p>
-          <p>{{user.location}}</p>
-          <div class="icons my-1">
-
+  {% include 'navbar.html' %}
+  <section class="container">
+    <a href="{% url 'profiles' %}" class="btn">Back To Profiles</a>
+    <div class="profile-grid my-1">
+      <!-- Top -->
+      <div class="profile-top bg-primary p-2">
+        <img class="round-img my-1"
+             src="{{ user.picture.url }}"
+             alt="{{ user.username }}"/>
+        <h1 class="large">{{ user.get_full_name }}</h1>
+        <p class="lead">{{ user.role }}</p>
+        <p>{{ user.location }}</p>
+        <div class="icons my-1">
           {% if user.socialmedia_set.all %}
             {% for media in user.socialmedia_set.all %}
               {% if media.type == "w" %}
-                <a href={{media.url}}>
+                <a href= {{ media.url }} >
                   <i class="fas fa-globe fa-2x"></i>
                 </a>
               {% elif media.type == "t" %}
-                <a href={{media.url}}>
+                <a href= {{ media.url }} >
                   <i class="fab fa-twitter fa-2x"></i>
                 </a>
               {% elif media.type == "f" %}
-                <a href={{media.url}}>
+                <a href={{ media.url }}>
                   <i class="fab fa-facebook fa-2x"></i>
                 </a>
               {% elif media.type == "l" %}
-                <a href={{media.url}}>
+                <a href={{ media.url }}>
                   <i class="fab fa-linkedin fa-2x"></i>
                 </a>
               {% elif media.type == "i" %}
-                <a href={{media.url}}>
+                <a href={{ media.url }}>
                   <i class="fab fa-instagram fa-2x"></i>
                 </a>
-          {% endif %}   
-          
-          {% endfor %}
-        </div>
-          {% endif %}
-        </div>
-        <!-- About -->
-        <div class="profile-about bg-light p-2">
-          <h2 class="text-primary">{{user.first_name}}'s Bio</h2>
-          <p>
-           {{user.bio}}
-          </p>
-          <div class="line"></div>
-          
-          {% if user.skill_set.all %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <!-- About -->
+      <div class="profile-about bg-light p-2">
+        <h2 class="text-primary">{{ user.first_name }}'s Bio</h2>
+        <p>{{ user.bio }}</p>
+        <div class="line"></div>
+        {% if user.skill_set.all %}
           <h2 class="text-primary">Skill Set</h2>
           <div class="skills">
             {% for skill in user.skill_set.all %}
-            
-            <div class="p-1"><i class="fas fa-check"></i> {{skill.name}}</div>
+              <div class="p-1">
+                <i class="fas fa-check"></i> {{ skill.name }}
+              </div>
             {% endfor %}
-            
           </div>
-          {% endif %}
-        </div>
-
-
-        <!-- Experience -->
-        <div class="profile-exp bg-white p-2">
-          <h2 class="text-primary">Experiences</h2>
-          {% for exp in user.experience_set.all %}
+        {% endif %}
+      </div>
+      <!-- Experience -->
+      <div class="profile-exp bg-white p-2">
+        <h2 class="text-primary">Experiences</h2>
+        {% for exp in user.experience_set.all %}
           <div>
-            <h3>{{exp.title}}</h3>
-            <p>{{exp.from_date}} - {{exp.to_date}}</p>
-            <p><strong>Position: </strong> {{exp.current_job}}</p>
+            <h3>{{ exp.title }}</h3>
+            <p>{{ exp.from_date }} - {{ exp.to_date }}</p>
             <p>
-              <strong>Description: </strong>{{exp.decription}}
+              <strong>Position:</strong> {{ exp.current_job }}
+            </p>
+            <p>
+              <strong>Description:</strong>{{ exp.decription }}
             </p>
           </div>
-          {% endfor %}
-        </div>
-
-
-
-
-
-        <!-- Education -->
-        <div class="profile-edu bg-white p-2">
-          <h2 class="text-primary">Education</h2>
-          {% for edu  in user.education_set.all %}
+        {% endfor %}
+      </div>
+      <!-- Education -->
+      <div class="profile-edu bg-white p-2">
+        <h2 class="text-primary">Education</h2>
+        {% for edu  in user.education_set.all %}
           <div>
-            <h3>{{edu.school}}</h3>
-            <p>{{edu.from_date}} - {{edu.to_date}}</p>
-            <p><strong>Degree: </strong> {{edu.degree}}</p>
-            <p><strong>Field Of Study: </strong> {{edu.field}}</p>
+            <h3>{{ edu.school }}</h3>
+            <p>{{ edu.from_date }} - {{ edu.to_date }}</p>
             <p>
-              <strong>Description: </strong>{{edu.decription}}
+              <strong>Degree:</strong> {{ edu.degree }}
+            </p>
+            <p>
+              <strong>Field Of Study:</strong> {{ edu.field }}
+            </p>
+            <p>
+              <strong>Description:</strong>{{ edu.decription }}
             </p>
           </div>
-          {% endfor %}
+        {% endfor %}
+      </div>
+      <!-- Github Repos -->
+      <div class="profile-github">
+        <h2 class="text-primary my-1">
+          <i class="fab fa-github"></i> Github Repos
+        </h2>
+        <div class="repo bg-white my-1 p-1">
+          <div>
+            <h4>
+              <a href="#">Repo One</a>
+            </h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Facilis, tenetur.
+            </p>
+          </div>
+          <div>
+            <ul>
+              <li class="badge badge-primary">Stars: 44</li>
+              <li class="badge badge-dark">Watchers: 20</li>
+              <li class="badge badge-light">Forks: 25</li>
+            </ul>
+          </div>
         </div>
-
-
-
-
-
-        <!-- Github Repos -->
-        <div class="profile-github">
-          <h2 class="text-primary my-1">
-            <i class="fab fa-github"></i> Github Repos
-          </h2>
-          <div class="repo bg-white my-1 p-1">
-            <div>
-              <h4><a href="#">Repo One</a></h4>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Facilis, tenetur.
-              </p>
-            </div>
-
-            <div>
-              <ul>
-                <li class="badge badge-primary">Stars: 44</li>
-                <li class="badge badge-dark">Watchers: 20</li>
-                <li class="badge badge-light">Forks: 25</li>
-              </ul>
-            </div>
+        <div class="repo bg-white my-1 p-1">
+          <div>
+            <h4>
+              <a href="#">Repo Two</a>
+            </h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Facilis, tenetur.
+            </p>
           </div>
-
-          <div class="repo bg-white my-1 p-1">
-            <div>
-              <h4><a href="#">Repo Two</a></h4>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Facilis, tenetur.
-              </p>
-            </div>
-
-            <div>
-              <ul>
-                <li class="badge badge-primary">Stars: 44</li>
-                <li class="badge badge-dark">Watchers: 20</li>
-                <li class="badge badge-light">Forks: 25</li>
-              </ul>
-            </div>
+          <div>
+            <ul>
+              <li class="badge badge-primary">Stars: 44</li>
+              <li class="badge badge-dark">Watchers: 20</li>
+              <li class="badge badge-light">
+                Forks: 25
+              </li>
+            </ul>
           </div>
-
-          <div class="repo bg-white my-1 p-1">
-            <div>
-              <h4><a href="#">Repo One</a></h4>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Facilis, tenetur.
-              </p>
-            </div>
-
-            <div>
-              <ul>
-                <li class="badge badge-primary">Stars: 44</li>
-                <li class="badge badge-dark">Watchers: 20</li>
-                <li class="badge badge-light">Forks: 25</li>
-              </ul>
-            </div>
+        </div>
+        <div class="repo bg-white my-1 p-1">
+          <div>
+            <h4>
+              <a href="#">Repo One</a>
+            </h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Facilis, tenetur.
+            </p>
+          </div>
+          <div>
+            <ul>
+              <li class="badge badge-primary">
+                Stars: 44
+              </li>
+              <li class="badge badge-dark">
+                Watchers: 20
+              </li>
+              <li class="badge badge-light">
+                Forks: 25
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </section>
-    {% endblock content %}
+    </div>
+  </section>
+{% endblock content %}

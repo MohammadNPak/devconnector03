@@ -1,0 +1,17 @@
+{% extends "landing.html" %}
+{% load static %}
+{% block landing_inner %}
+    <div class="profile-exp bg-dark p-2">
+        <h2 class="text-primary">Experiences</h2>
+        <div>
+            <h3>{{ experience.title }}</h3>
+            <p>{{ experience.from_date }} - {{ experience.to_date }}</p>
+            <p>
+                <strong>Position:</strong> {{ experience.current_job }}
+            </p>
+            <p>
+                <strong>Description:</strong>{{ experience.decription }}
+            </p>
+        </div>
+    </div>
+{% endblock landing_inner %}

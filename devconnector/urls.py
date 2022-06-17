@@ -26,15 +26,15 @@ from accounts import urls as accounts_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index,name='index'),
-    path('accounts/', include(accounts_urls)),
-    path('blog/', include(blog_urls)),
     ]
 
-
-
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns +=blog_urls.urlpatterns
+urlpatterns +=accounts_urls.urlpatterns
+
+
+
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
