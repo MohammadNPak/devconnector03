@@ -1,14 +1,15 @@
 {% if messages %}
     {% for message in messages %}
         {% if message.tags == "info" %}
-            <div class="alert alert-primary">{{ message|safe }}</div>
+            <div class="alert alert-primary">{{ message }}</div>
         {% elif message.tags == "success" %}
-            <div class="alert alert-success">{{ message|safe }}</div>
+            <div class="alert alert-success">{{ message }}</div>
         {% elif message.tags == "error" %}
-            <div class="alert alert-error">{{ message|safe }}</div>
+            <div class="alert alert-error">{{ message }}</div>
         {% endif %}
     {% endfor %}
 {% endif %}
+
 {% comment %} .alert.alert-primary info
 .alert.alert-success success
 .alert.alert-danger  error

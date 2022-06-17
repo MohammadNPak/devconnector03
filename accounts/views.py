@@ -1,11 +1,13 @@
+from email import message
 from django.shortcuts import get_object_or_404, render,redirect
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib import messages
 
-from accounts.models import User
-from .forms import UserForm
+from accounts.models import User,Experience
+from .forms import UserForm,ExperienceForm
 
 def login_page(request):
     if request.method == "POST":
@@ -49,8 +51,11 @@ def register(request):
     else:
         return HttpResponse("404")
 
+@login_required
 def dashboard(request):
-    return render(request,'accounts/dashboard.html',{})
+    if request.method=="GET":
+        experiences=request.user.experience_set.all()
+        return render(request,'accounts/dashboard.html',{"experiences":experiences})
 
   
 def create_profile(request):
@@ -59,8 +64,57 @@ def create_profile(request):
 def add_education(request):
     return render(request,'accounts/add-education.html',{})
 
+@login_required
 def add_experience(request):
-    return render(request,'accounts/add-experience.html',{})
+    if request.method=="POST":
+        form = ExperienceForm(request.POST)
+        if form.is_valid():
+            form=form.save(commit=False)
+            form.user=request.user
+            form.save()
+            messages.add_message(request,messages.SUCCESS,"your expreience has been saved successfully")
+            return redirect(reverse("dashboard"))
+        else:
+            return render(request,'accounts/add-experience.html',{"form":form})
+            
+    elif request.method =="GET":
+        form = ExperienceForm()
+        return render(request,'accounts/add-experience.html',{"form":form})
+    else:
+        return HttpResponse("404")
     
+@login_required
+def delete_experience(request,id):
+
+    if request.method=="POST":
+        Experience.objects.get(id=id).delete()
+        messages.add_message(request,messages.SUCCESS,"experience has been removed")
+        return redirect(reverse("dashboard"))
+    # except:
+    #     return  HttpResponse("404") 
+        
+@login_required
+def update_experience(request,id):
+
+    e=Experience.objects.get(id=id)
+    if request.method=="GET":
+        # print(e)
+        # print(type(e))
+        f = ExperienceForm(instance=e)
+        # messages.add_message(request,messages.SUCCESS,"experience has been removed")
+        return render(request,'accounts/add-experience.html',{"form":f})
+    elif request.method == "POST":
+        form = ExperienceForm(request.POST)
+        if form.is_valid():
+            if e.user.id==request.user.id:
+                form=form.save(commit=False)
+                form.user=request.user
+                form.id=id
+                form.save()
+            messages.add_message(request,messages.SUCCESS,"your expreience has been saved successfully")
+            return redirect(reverse("dashboard"))
+        else:
+            return render(request,'accounts/add-experience.html',{"form":form})
+        
 
 

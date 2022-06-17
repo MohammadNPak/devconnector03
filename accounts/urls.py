@@ -11,7 +11,9 @@ urlpatterns = [
   path('logout/',views.logout_page ,name='logout'),
   path('profiles',views.profiles ,name='profiles'),
   path('profile/<str:username>',views.profile ,name='profile'),
-  path('addeducation',views.add_education ,name='education'),
-  path('addexperience',views.add_experience ,name='experience'),
+  path('addeducation',views.add_education ,name='addeducation'),
+  path('experience/add',views.add_experience ,name='addexperience'),
+  path('experience/delete/<int:id>',views.delete_experience ,name='deleteexperience'),
+  path('experience/update/<int:id>',views.update_experience ,name='updateexperience'),
 
 ]

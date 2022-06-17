@@ -23,8 +23,12 @@ class SkillForm(forms.ModelForm):
 class ExperienceForm(forms.ModelForm):
     class Meta:
         model=models.Experience
-        # fields=[]
+        # fields="__all__"
         exclude = ('user',)
+        help_texts={
+            "title":"enter title for experience"
+        }
+
         
 class EducationForm(forms.ModelForm):
     class Meta:
